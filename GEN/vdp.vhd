@@ -2310,21 +2310,6 @@ begin
 
 	elsif rising_edge(CLK) then
 
-		OLD_HL <= HL;
-		if OLD_HL = '1' and HL = '0' and IE2 = '1' then
-			EXINT_PENDING_SET <= '1';
-		else
-			EXINT_PENDING_SET <= '0';
-		end if;
-		
-		if M3 ='1' then	
-			if HL ='1' then
-				HV <= HV_VCNT_EXT(7 downto 1) & HV8 & HV_HCNT(8 downto 1);
-			end if;
-		else
-			HV <= HV_VCNT_EXT(7 downto 1) & HV8 & HV_HCNT(8 downto 1);
-		end if;
-
 		HINT_PENDING_SET <= '0';
 		VINT_TG68_PENDING_SET <= '0';
 		VINT_T80_SET <= '0';
@@ -2339,6 +2324,16 @@ begin
 		BGA_PATTERN_EN <= '0';
 		BGB_MAPPING_EN <= '0';
 		BGB_PATTERN_EN <= '0';
+		
+		OLD_HL <= HL;
+		if OLD_HL = '1' and HL = '0' then
+			HV <= HV_VCNT_EXT(7 downto 1) & HV8 & HV_HCNT(8 downto 1);
+			EXINT_PENDING_SET <= '1';
+		end if;
+
+		if M3 ='0' then	
+			HV <= HV_VCNT_EXT(7 downto 1) & HV8 & HV_HCNT(8 downto 1);
+		end if;
 
 		-- H40 slow slots: 8aaaaaaa99aaaaaaa8aaaaaaa99aaaaaaa
 		-- 8, 10, 10, 10, 10, 10, 10, 10, 9, 9, 10, 10, 10, 10, 10, 10, 10, 8, 10, 10, 10, 10, 10, 10, 10, 9, 9, 10, 10, 10, 10, 10, 10, 10
