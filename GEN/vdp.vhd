@@ -2289,7 +2289,6 @@ begin
 		V_ACTIVE <= '0';
 		V_ACTIVE_DISP <= '0';
 
-		EXINT_PENDING_SET <= '0';
 		HINT_EN <= '0';
 		HINT_PENDING_SET <= '0';
 		VINT_TG68_PENDING_SET <= '0';
@@ -2310,6 +2309,7 @@ begin
 
 	elsif rising_edge(CLK) then
 
+		EXINT_PENDING_SET <= '0';
 		HINT_PENDING_SET <= '0';
 		VINT_TG68_PENDING_SET <= '0';
 		VINT_T80_SET <= '0';
