@@ -2321,9 +2321,9 @@ begin
 		SP1_EN <= '0';
 		SP2_EN <= '0';
 		BGA_MAPPING_EN <= '0';
-		BGA_PATTERN_EN <= '0';
+		--BGA_PATTERN_EN <= '0';
 		BGB_MAPPING_EN <= '0';
-		BGB_PATTERN_EN <= '0';
+		--BGB_PATTERN_EN <= '0';
 		
 		OLD_HL <= HL;
 		if OLD_HL = '1' and HL = '0' then
@@ -2467,13 +2467,13 @@ begin
 			case HV_HCNT(3 downto 0) is
 				when "0010" => BGA_MAPPING_EN <= '1';
 				when "0100" => null; -- external or refresh
-				when "0110" => BGA_PATTERN_EN <= '1';
-				when "1000" => BGA_PATTERN_EN <= '1';
+				--when "0110" => BGA_PATTERN_EN <= '1';
+				--when "1000" => BGA_PATTERN_EN <= '1';
 				when "1010" => BGB_MAPPING_EN <= '1';
 				when "1100" => SP2_EN <= '1';
-				when "1110" => BGB_PATTERN_EN <= '1';
+				--when "1110" => BGB_PATTERN_EN <= '1';
 				when "0000" =>
-					BGB_PATTERN_EN <= '1';
+					--BGB_PATTERN_EN <= '1';
 					if OBJ_LIMIT_HIGH_EN = '1' then
 						SP2_EN <= '1'; -- Update SP2 twice as often when sprite limit is increased
 					end if;
